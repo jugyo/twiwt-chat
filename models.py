@@ -2,6 +2,11 @@
 
 from google.appengine.ext import db
 
-class Todo(db.Model):
+class Chat(db.Model):
+    name = db.StringProperty()
+    created_at = db.DateTimeProperty(auto_now=True)
+
+class Shout(db.Model):
+    chat = db.ReferenceProperty(Chat)
     text = db.StringProperty()
     created_at = db.DateTimeProperty(auto_now=True)

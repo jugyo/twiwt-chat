@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block body %}
+  <h2>{{ chat.name }}</h2>
+
+  <ul id="shouts">
+    {% for shout in shouts %}
+      <li>{{ shout.text }}</li>
+    {% endfor %}
+  </ul>
+
+  <form id="shout-form">
+    <textarea id="shout-text"></textarea>
+    <input type="submit" value="shout" />
+  </form>
+
+  <script type="text/javascript">
+    $(function() {
+
+      var server = new Pusher('{{ g.config.key }}', '{{ chat.key() }}');
+      server.bind('shout', function(data) {
+        console.log(data);
+        $('#shouts').append($('<li>').text(data.text));
+      });
+
+      $('#shout-form').submit(function() {
+        $.ajax({
+          type: "POST",
+          url: "{{ url_for('chat', name=chat.name) }}",
+          data: "text=" + $('#shout-text').val(),
+          success: function(msg){
+            $('#shout-text').val('')
+          }
+        });
+        return false;
+      });
+
+    });
+  </script>
+{% endblock %}

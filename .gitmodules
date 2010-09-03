@@ -1,0 +1,3 @@
+[submodule "lib/pusherapp"]
+	path = lib/pusherapp
+	url = git@github.com:jugyo/gae-pusherapp.git

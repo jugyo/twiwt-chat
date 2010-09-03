@@ -1,13 +1,17 @@
 {% extends "layout.html" %}
 {% block body %}
-  <form action="{{ url_for('add') }}" method="post">
-    <input type="text" name="text" />
-    <input type="submit" value="add"/>
-  </form>
-
   <ul>
-    {% for todo in todos %}
-      <li>{{ todo.text }}</li>
+    {% for chat in chats %}
+      <li><a href="{{ url_for('chat', name=chat.name) }}">{{ chat.name }}</a></li>
     {% endfor %}
   </ul>
+
+  <script type="text/javascript">
+    $(function() {
+      var server = new Pusher('{{ g.config.key }}', 'c');
+      server.bind('shout', function(data) {
+        console.log(data);
+      });
+    });
+  </script>
 {% endblock %}
