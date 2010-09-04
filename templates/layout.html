@@ -19,20 +19,24 @@
     </script>
   </head>
   <body>
-    {% for msg in get_flashed_messages() %}<p class="flash">{{ msg }}</p>{% endfor %}
 
-    <h1><a href="/">Pucher</a></h1>
+    <div id="header">
+      <h1><a href="/">Pucher</a></h1>
+      /
+      <form id="go">
+        <input type="text" name="name" value="{{ chat.name if chat }}"/>
+      </form>
+      <script type="text/javascript">
+        $('#go').submit(function() {
+          window.location.href = '/' + $('input[name=name]', this).val();
+        });
+      </script>
+    </div>
 
-    <form id="go">
-      <input type="text" name="name" value="{{ chat.name if chat }}"/>
-    </form>
-    <script type="text/javascript">
-      $('#go').submit(function() {
-        window.location.href = '/' + $('input[name=name]', this).val();
-      });
-    </script>
-
-    {% block body %}{% endblock %}
+    <div id="content">
+      {% for msg in get_flashed_messages() %}<p class="flash">{{ msg }}</p>{% endfor %}
+      {% block body %}{% endblock %}
+    </div>
 
   </body>
 </html>

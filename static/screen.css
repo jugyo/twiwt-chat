@@ -1,4 +1,53 @@
+@import "reset.css";
+
 body {
-  margin: 60px;
   font-family: 'Lucida Grande', sans-serif;
 }
+
+/* -------- #header -------- */
+
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 30px;
+  width: 100%;
+  padding: 4px 12px;
+  background-color: #64DBFF;
+  color: #FFF;
+  font-size: 20px;
+}
+
+h1 {
+  display: inline-block;
+}
+
+h1 a {
+  color: #FFF;
+}
+
+form#go {
+  display: inline-block;
+}
+
+form#go input[type=text] {
+  border: solid 1px;
+  border-color: #ADECFF;
+  font-size: 20px;
+  background-color: #64DBFF;
+  color: #FFF;
+}
+
+form#go input[type=text]:hover {
+  border-color: #FFF;
+}
+
+/* -------- #content -------- */
+
+#content {
+  padding: 4px 12px;
+  margin-top: 40px;
+  position: relative;
+}
+
+/* -------- xxxxx -------- */
