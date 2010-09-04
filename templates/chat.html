@@ -1,7 +1,5 @@
 {% extends "layout.html" %}
 {% block body %}
-  <h2>{{ chat.name }}</h2>
-
   <ul id="shouts">
     {% for shout in shouts %}
       <li>{{ shout.text }}</li>

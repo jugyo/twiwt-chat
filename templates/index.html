@@ -1,8 +1,12 @@
 {% extends "layout.html" %}
 {% block body %}
   <ul>
-    {% for chat in chats %}
-      <li><a href="{{ url_for('chat', name=chat.name) }}">{{ chat.name }}</a></li>
+    {% for shout in shouts %}
+      <li>
+        <a href="{{ url_for('chat', name=shout.chat_name) }}">{{ shout.chat_name }}</a>
+        :
+        {{ shout.text }}
+      </li>
     {% endfor %}
   </ul>
 

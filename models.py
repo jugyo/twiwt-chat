@@ -7,6 +7,6 @@ class Chat(db.Model):
     created_at = db.DateTimeProperty(auto_now=True)
 
 class Shout(db.Model):
-    chat = db.ReferenceProperty(Chat)
+    chat_name = db.StringProperty()
     text = db.StringProperty()
     created_at = db.DateTimeProperty(auto_now=True)

@@ -18,7 +18,7 @@
     <h1><a href="/">Pucher</a></h1>
 
     <form id="go">
-      <input type="text" name="name" />
+      <input type="text" name="name" value="{{ chat.name if chat }}"/>
     </form>
     <script type="text/javascript">
       $('#go').submit(function() {
