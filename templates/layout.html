@@ -1,3 +1,4 @@
+{%- from "helpers.html" import user_image_link, user_link -%}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -33,7 +34,8 @@
       </script>
       <div id="user-menu">
         {% if g.user %}
-          {{ g.user.name }}
+          {{ user_image_link(g.user.name, 'm') }}
+          {{ user_link(g.user.name) }}
           |
           <a href="{{ url_for('logout') }}">Sign out</a>
         {% else %}

@@ -14,6 +14,7 @@ class Chat(db.Model):
 
 class Shout(db.Model):
     chat_name = db.StringProperty()
+    user_name = db.StringProperty()
     text = db.StringProperty()
     created_at = db.DateTimeProperty(auto_now=True)
 

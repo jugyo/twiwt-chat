@@ -10,6 +10,8 @@ body {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 1000;
+  opacity: 0.8;
   height: 30px;
   width: 100%;
   padding: 4px 0;
@@ -53,12 +55,38 @@ form#go input[type=text]:hover {
   color: yellow;
 }
 
+#user-menu img {
+  vertical-align: middle;
+}
+
 /* -------- #content -------- */
 
 #content {
   padding: 4px 12px;
   margin-top: 40px;
   position: relative;
+  height: 1000px;
+}
+
+/* -------- chat -------- */
+
+textarea#shout-text {
+  display: block;
+  width: 100%;
+  height: 40px;
+  margin: 8px 0;
+  border: solid 1px;
+  border-color: #CCC;
+}
+
+textarea#shout-text:hover {
+  border-color: #666;
+}
+
+input[type=submit]#shout-button {
+  padding: 0;
+  margin: 0;
+  float: right;
 }
 
 /* -------- xxxxx -------- */

@@ -150,6 +150,8 @@ def chat(name):
 def shout(name):
     chat = Chat.all().filter('name =', name).get()
     shout = Shout(chat_name=chat.name, text=request.form['text'])
+    if g.user is not None:
+        shout.user_name = g.user.name
     shout.save()
     # app.logger.info(chat.key())
     pusher[chat.key()].trigger('shout', data={'text': shout.text})

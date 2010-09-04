@@ -2,13 +2,20 @@
 {% block body %}
   <ul id="shouts">
     {% for shout in shouts %}
-      <li>{{ shout.text }}</li>
+      <li>
+        {%- if shout.user_name -%}
+          {{ user_image_link(shout.user_name, 'm') }}
+        {%- else -%}
+          anonymous
+        {%- endif -%}
+        {{ shout.text }}
+      </li>
     {% endfor %}
   </ul>
 
   <form id="shout-form">
     <textarea id="shout-text"></textarea>
-    <input type="submit" value="shout" />
+    <input type="submit" id="shout-button" value="shout" />
   </form>
 
   <script type="text/javascript">
