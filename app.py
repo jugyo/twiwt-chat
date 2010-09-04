@@ -128,6 +128,7 @@ def oauth_authorized(resp):
 def index():
     shouts = Shout.all().order('created_at').fetch(100)
     shouts = map((lambda x: x.to_dict()), shouts)
+    # app.logger.info(g.user.recent_chats)
     return render_template('index.html', shouts=shouts)
 
 
@@ -136,11 +137,23 @@ def index():
 def chat(name):
     if re.match('^[a-zA-Z0-9\-_]+$', name) is not None:
         chat = Chat.all().filter('name =', name).get()
+
         if chat is None:
             chat = Chat(name=name)
             chat.save()
+
+        if g.user:
+            try:
+                g.user.recent_chats.remove(chat.name)
+            except ValueError:
+                pass
+            g.user.recent_chats.insert(0, chat.name)
+            del g.user.recent_chats[100:]
+            g.user.save()
+
         shouts = Shout.all().filter('chat_name =', chat.name).order('created_at').fetch(20)
         shouts = map((lambda x: x.to_dict()), shouts)
+
         return render_template('chat.html', chat=chat, shouts=shouts)
     else:
         flash(u'チャット名に使えるのは英数字と　- (ハイフン) _ (アンダースコア) だけです！')

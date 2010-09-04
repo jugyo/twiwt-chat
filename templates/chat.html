@@ -5,7 +5,7 @@
 
   <form id="shout-form">
     <textarea id="shout-text"></textarea>
-    <input type="submit" id="shout-button" value="shout" />
+    <input type="submit" id="shout-button" value="shout!" class="awesome" />
   </form>
 
   <!-- Template content --> 
@@ -41,20 +41,27 @@
       });
 
       $('#shout-form').submit(function() {
+        // もうちょっと気の利いたエフェクトを入れる
+        var text = $('#shout-text').val();
+        $('#shout-text').attr('readonly', true);
         $.ajax({
           type: "POST",
           url: "{{ url_for('chat', name=chat.name) }}",
-          data: "text=" + $('#shout-text').val(),
+          data: "text=" + text,
           success: function(msg){
-            $('#shout-text').val('')
+            $('#shout-text').val('');
+            $('#shout-text').attr('readonly', false);
           }
         });
+        $('#shout-text').focus();
         return false;
       });
 
       var data = {};
       data.shouts = {{ shouts|tojson|safe }};
       $.insertShout(data);
+
+      $('#shout-text').focus();
     });
   </script>
 {% endblock %}

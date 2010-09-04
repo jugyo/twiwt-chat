@@ -28,6 +28,7 @@ class User(db.Model):
     oauth_secret                = db.StringProperty()
     remember_token              = db.StringProperty()
     remember_token_expires_at   = db.DateTimeProperty()
+    recent_chats                = db.StringListProperty()
     created_at                  = db.DateTimeProperty(auto_now=True)
 
     def update_remember_token(self):

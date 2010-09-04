@@ -45,6 +45,17 @@
       </div>
     </div>
 
+    <div id="side">
+      <ul>
+        {% if g.user %}
+          <h2>History</h2>
+          {% for chat in g.user.recent_chats[:20] %}
+            <li><a href="{{ url_for('chat', name=chat) }}">{{ chat }}</a></li>
+          {% endfor %}
+        {% endif %}
+      </ul>
+    </div>
+
     <div id="content">
       {% for msg in get_flashed_messages() %}<p class="flash">{{ msg }}</p>{% endfor %}
       {% block body %}{% endblock %}

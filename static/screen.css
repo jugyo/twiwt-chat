@@ -1,4 +1,5 @@
 @import "reset.css";
+@import "awesome-buttons.css";
 
 body {
   font-family: 'Lucida Grande', sans-serif;
@@ -52,11 +53,30 @@ form#go input[type=text]:hover {
 }
 
 #user-menu a {
-  color: yellow;
+  color: #FFF;
 }
 
 #user-menu img {
   vertical-align: middle;
+}
+
+/* -------- #side -------- */
+
+#side {
+  position: fixed;
+  top: 58px;
+  left: 0;
+  width: 200px;
+  background-color: #EEE;
+}
+
+#side ul {
+  padding: 12px;
+}
+
+#side h2 {
+  color: #666;
+  margin-bottom: 6px;
 }
 
 /* -------- #content -------- */
@@ -64,28 +84,28 @@ form#go input[type=text]:hover {
 #content {
   padding: 4px 12px;
   margin-top: 40px;
+  margin-left: 200px;
   position: relative;
 }
 
 /* -------- chat -------- */
 
 textarea#shout-text {
-  display: block;
-  width: 100%;
+  width: 80%;
   height: 40px;
   margin: 8px 0;
   border: solid 1px;
   border-color: #CCC;
+  vertical-align: middle;
 }
 
-textarea#shout-text:hover {
+textarea#shout-text:hover, textarea#shout-text:focus {
   border-color: #666;
 }
 
 input[type=submit]#shout-button {
   padding: 0;
   margin: 0;
-  float: right;
 }
 
 /* -------- xxxxx -------- */
