@@ -31,6 +31,15 @@
           window.location.href = '/' + $('input[name=name]', this).val();
         });
       </script>
+      <div id="user-menu">
+        {% if g.user %}
+          {{ g.user.name }}
+          |
+          <a href="{{ url_for('logout') }}">Sign out</a>
+        {% else %}
+          <a href="{{ url_for('login') }}" title="Sign in with Twitter" class="tooltip">Sign in</a>
+        {% endif %}
+      </div>
     </div>
 
     <div id="content">

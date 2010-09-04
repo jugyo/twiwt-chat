@@ -13,24 +13,115 @@
 # chat          | created
 # chat.key()    | shout
 
-from flask import Flask, url_for, render_template, request, redirect, g, flash
+from flask import Flask, redirect, url_for, session, request, render_template,\
+                    abort, flash, get_flashed_messages, g, Response
+from flaskext.oauth import OAuth
 from models import *
 import pusherapp
 import config
 import re
+from time import time
+import datetime
+from hashlib import sha1
 
 app = Flask(__name__)
 app.secret_key = config.session_secret_key
 
 pusher = pusherapp.Pusher(app_id=config.app_id, key=config.key, secret=config.secret)
 
+########################################################
+# Before Reqest
+########################################################
+
 @app.before_request
 def before_request():
     g.config = config
 
-##############
+    g.user = None
+    if 'remember_token' in session:
+        user = User.all().filter('remember_token =', session['remember_token']).get()
+        if user is not None:
+            if user.remember_token_expires_at and user.remember_token_expires_at > datetime.datetime.now():
+                g.user = user
+                if user.remember_token_expires_at < datetime.datetime.now() + datetime.timedelta(days=1):
+                    # update remember_token
+                    user.update_remember_token()
+                    session['remember_token'] = user.remember_token
+                    db.put(user)
+            else:
+                user.delete_remember_token()
+                db.put(user)
+
+    g.twitter_api_key = config.consumer_key
+
+########################################################
+# OAuth
+########################################################
+
+oauth = OAuth()
+twitter = oauth.remote_app('twitter',
+    base_url            = 'http://api.twitter.com/1/',
+    request_token_url   = 'http://api.twitter.com/oauth/request_token',
+    access_token_url    = 'http://api.twitter.com/oauth/access_token',
+    authorize_url       = 'http://api.twitter.com/oauth/authenticate',
+    consumer_key        = config.consumer_key,
+    consumer_secret     = config.consumer_secret
+)
+
+@twitter.tokengetter
+def get_twitter_token():
+    user = g.user
+    if user is not None:
+        return user.oauth_token, user.oauth_secret
+    return None
+
+@app.route('/login')
+def login():
+    return twitter.authorize(callback=url_for('oauth_authorized',
+        next=request.args.get('next') or request.referrer or None))
+
+
+@app.route('/logout')
+def logout():
+    if g.user is not None:
+        g.user.delete_remember_token()
+        db.put(g.user)
+        flash('You were signed out')
+    return redirect(request.referrer or url_for('index'))
+
+
+@app.route('/oauth-authorized')
+@twitter.authorized_handler
+def oauth_authorized(resp):
+    next_url = request.args.get('next') or url_for('index')
+    if resp is None:
+        flash(u'You denied the request to sign in.')
+        return redirect(next_url)
+
+    user = User.all().filter('twitter_id =', int(resp['user_id'])).get()
+
+    if user is None:
+        user = User(twitter_id = int(resp['user_id']),
+                    name = resp['screen_name'],
+                    oauth_token = resp['oauth_token'],
+                    oauth_secret = resp['oauth_token_secret'],
+                    date = datetime.datetime.now()
+                    )
+        user.update_remember_token()
+        db.put(user)
+
+    if user.remember_token is None:
+        user.update_remember_token()
+        db.put(user)
+
+    session['remember_token'] = user.remember_token
+
+    flash('You were signed in')
+    return redirect(next_url)
+
+########################################################
 # Chat
-##############
+########################################################
 
 # chat list
 @app.route('/')

@@ -12,13 +12,14 @@ body {
   left: 0;
   height: 30px;
   width: 100%;
-  padding: 4px 12px;
+  padding: 4px 0;
   background-color: #64DBFF;
   color: #FFF;
   font-size: 20px;
 }
 
 h1 {
+  margin-left: 12px;
   display: inline-block;
 }
 
@@ -40,6 +41,16 @@ form#go input[type=text] {
 
 form#go input[type=text]:hover {
   border-color: #FFF;
+}
+
+#user-menu {
+  margin-right: 12px;
+  font-size: 80%;
+  float: right;
+}
+
+#user-menu a {
+  color: yellow;
 }
 
 /* -------- #content -------- */
