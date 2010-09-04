@@ -13,12 +13,15 @@
 # chat          | created
 # chat.key()    | shout
 
-from flask import Flask, url_for, render_template, request, redirect, g
+from flask import Flask, url_for, render_template, request, redirect, g, flash
 from models import *
 import pusherapp
 import config
+import re
 
 app = Flask(__name__)
+app.secret_key = config.session_secret_key
+
 pusher = pusherapp.Pusher(app_id=config.app_id, key=config.key, secret=config.secret)
 
 @app.before_request
@@ -39,12 +42,16 @@ def index():
 # show
 @app.route('/<name>', methods=['GET'])
 def chat(name):
-    chat = Chat.all().filter('name =', name).get()
-    if chat is None:
-        chat = Chat(name=name)
-        chat.save()
-    shouts = Shout.all().filter('chat_name =', chat.name).order('-created_at').fetch(20)
-    return render_template('chat.html', chat=chat, shouts=shouts)
+    if re.match('^[a-zA-Z0-9\-_]+$', name) is not None:
+        chat = Chat.all().filter('name =', name).get()
+        if chat is None:
+            chat = Chat(name=name)
+            chat.save()
+        shouts = Shout.all().filter('chat_name =', chat.name).order('-created_at').fetch(20)
+        return render_template('chat.html', chat=chat, shouts=shouts)
+    else:
+        flash(u'チャット名に使えるのは英数字と　- (ハイフン) _ (アンダースコア) だけです！')
+        return redirect(url_for('index'))
 
 
 # shout

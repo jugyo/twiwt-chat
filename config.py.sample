@@ -1,3 +1,5 @@
 app_id = 'XXX'
 key = 'XXXXXXXXXXXXXXXXXXXX'
 secret = 'XXXXXXXXXXXXXXXXXXXX'
+
+session_secret_key = 'foo'
