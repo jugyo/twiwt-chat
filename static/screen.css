@@ -11,7 +11,7 @@ body {
   top: 0;
   left: 0;
   z-index: 1000;
-  opacity: 0.8;
+  opacity: 0.98;
   height: 30px;
   width: 100%;
   padding: 4px 0;
@@ -65,7 +65,6 @@ form#go input[type=text]:hover {
   padding: 4px 12px;
   margin-top: 40px;
   position: relative;
-  height: 1000px;
 }
 
 /* -------- chat -------- */

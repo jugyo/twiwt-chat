@@ -18,6 +18,8 @@ class Shout(db.Model):
     text = db.StringProperty()
     created_at = db.DateTimeProperty(auto_now=True)
 
+    def to_dict(self):
+        return {'user_name': self.user_name, 'text': self.text, 'created_at': str(self.created_at)}
 
 class User(db.Model):
     name                        = db.StringProperty()

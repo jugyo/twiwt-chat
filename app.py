@@ -126,7 +126,8 @@ def oauth_authorized(resp):
 # chat list
 @app.route('/')
 def index():
-    shouts = Shout.all().order('-created_at').fetch(100)
+    shouts = Shout.all().order('created_at').fetch(100)
+    shouts = map((lambda x: x.to_dict()), shouts)
     return render_template('index.html', shouts=shouts)
 
 
@@ -138,7 +139,8 @@ def chat(name):
         if chat is None:
             chat = Chat(name=name)
             chat.save()
-        shouts = Shout.all().filter('chat_name =', chat.name).order('-created_at').fetch(20)
+        shouts = Shout.all().filter('chat_name =', chat.name).order('created_at').fetch(20)
+        shouts = map((lambda x: x.to_dict()), shouts)
         return render_template('chat.html', chat=chat, shouts=shouts)
     else:
         flash(u'チャット名に使えるのは英数字と　- (ハイフン) _ (アンダースコア) だけです！')
@@ -154,7 +156,7 @@ def shout(name):
         shout.user_name = g.user.name
     shout.save()
     # app.logger.info(chat.key())
-    pusher[chat.key()].trigger('shout', data={'text': shout.text})
+    pusher[chat.key()].trigger('shout', data=shout.to_dict())
     return ''
 
 

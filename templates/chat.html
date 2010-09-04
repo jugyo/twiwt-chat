@@ -1,16 +1,6 @@
 {% extends "layout.html" %}
 {% block body %}
   <ul id="shouts">
-    {% for shout in shouts %}
-      <li>
-        {%- if shout.user_name -%}
-          {{ user_image_link(shout.user_name, 'm') }}
-        {%- else -%}
-          anonymous
-        {%- endif -%}
-        {{ shout.text }}
-      </li>
-    {% endfor %}
   </ul>
 
   <form id="shout-form">
@@ -18,13 +8,36 @@
     <input type="submit" id="shout-button" value="shout" />
   </form>
 
+  <!-- Template content --> 
+	<textarea id="template" style="display:none"> 
+		{{'{#foreach $T.shouts as shout}'}}
+  	  <li class="shout">
+        <a href="http://twitter.com/{{'{ $T.shout.user_name }'}}" class="user-link">
+          <img src="http://img.tweetimag.es/i/{{'{ $T.shout.user_name }'}}_m" alt="{{'{ $T.shout.user_name }'}}" class="user-image" />
+        </a>
+        :
+        <span class="text">{{'{ $T.shout.text }'}}
+  	  </li>
+		{{'{#/for}'}}
+	</textarea>
+
+  <div id="result" style="display: none;"></div>
+
   <script type="text/javascript">
     $(function() {
 
+      $.insertShout = function(data) {
+        console.log(data);
+        // attach the template
+        $("#result").setTemplateElement("template");
+        // process the template
+        $("#result").processTemplate(data);
+        $("#shouts").append($("#result").html());
+      }
+
       var server = new Pusher('{{ g.config.key }}', '{{ chat.key() }}');
       server.bind('shout', function(data) {
-        console.log(data);
-        $('#shouts').append($('<li>').text(data.text));
+        $.insertShout({shouts: [data]});
       });
 
       $('#shout-form').submit(function() {
@@ -39,6 +52,9 @@
         return false;
       });
 
+      var data = {};
+      data.shouts = {{ shouts|tojson|safe }};
+      $.insertShout(data);
     });
   </script>
 {% endblock %}
