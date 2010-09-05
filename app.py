@@ -169,13 +169,3 @@ def shout(name):
     shout.save()
     pusher[chat.key()].trigger('shout', data=shout.to_dict())
     return ''
-
-
-# test
-@app.route('/test', methods=['GET'])
-def test():
-    for item in Chat.all().fetch(100):
-        item.delete()
-    for item in Shout.all().fetch(100):
-        item.delete()
-    return 'OK'
