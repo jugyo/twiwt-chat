@@ -1,5 +1,26 @@
 {% extends "layout.html" %}
 {% block body %}
+  <h2>Recent</h2>
+
+  <div id="chat">
+    <ul id="shouts">
+      {% for shout in shouts %}
+    	  <li class="shout">
+          <p>
+            <a href="{{ url_for('chat', name=shout.chat_name) }}" style="font-weight: bold; color: #AAA">{{ shout.chat_name }}</a>
+          </p>
+          <p style="margin: 8px 0 8px 24px; line-height: 1.5em;">
+            <a href="http://twitter.com/{{ shout.user_name }}">
+              <img src="http://img.tweetimag.es/i/{{ shout.user_name }}_m" alt="{{ shout.user_name }}" class="user-image" />
+            </a>
+            <a href="http://twitter.com/{{ shout.user_name }}" class="user-link">{{ shout.user_name }}</a>
+            {{ shout.text }}
+          </p>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
   {% if False %}
   <ul>
     {% for shout in shouts %}
