@@ -66,12 +66,13 @@ form#go input[type=text]:hover {
   position: fixed;
   top: 58px;
   right: 0;
-  width: 240px;
+  width: 216px;
   background-color: #EEE;
+  padding: 12px 12px 16px 12px;
+  border-radius: 2px 0 0 12px;
 }
 
 #side ul {
-  padding: 12px;
 }
 
 #side h2 {
@@ -97,6 +98,7 @@ textarea#shout-text {
   border: solid 1px;
   border-color: #CCC;
   vertical-align: middle;
+  border-radius: 2px;
 }
 
 textarea#shout-text:hover, textarea#shout-text:focus {
@@ -106,6 +108,23 @@ textarea#shout-text:hover, textarea#shout-text:focus {
 input[type=submit]#shout-button {
   padding: 0;
   margin: 0;
+}
+
+/* -------- #footer -------- */
+
+#footer {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  background-color: #AAA;
+  color: #FFF;
+  font-size: 86%;
+  padding: 4px 12px;
+  border-radius: 12px 0 0 0;
+}
+
+#footer a {
+  color: #FFF;
 }
 
 /* -------- xxxxx -------- */
