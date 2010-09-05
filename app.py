@@ -126,9 +126,7 @@ def oauth_authorized(resp):
 # chat list
 @app.route('/')
 def index():
-    shouts = Shout.all().order('created_at').fetch(100)
-    shouts = map((lambda x: x.to_dict()), shouts)
-    # app.logger.info(g.user.recent_chats)
+    shouts = Shout.all().order('-created_at').fetch(100)
     return render_template('index.html', shouts=shouts)
 
 
@@ -151,8 +149,9 @@ def chat(name):
             del g.user.recent_chats[100:]
             g.user.save()
 
-        shouts = Shout.all().filter('chat_name =', chat.name).order('created_at').fetch(20)
+        shouts = Shout.all().filter('chat_name =', chat.name).order('-created_at').fetch(20)
         shouts = map((lambda x: x.to_dict()), shouts)
+        shouts.reverse()
 
         return render_template('chat.html', chat=chat, shouts=shouts)
     else:
@@ -168,7 +167,6 @@ def shout(name):
     if g.user is not None:
         shout.user_name = g.user.name
     shout.save()
-    # app.logger.info(chat.key())
     pusher[chat.key()].trigger('shout', data=shout.to_dict())
     return ''
 
