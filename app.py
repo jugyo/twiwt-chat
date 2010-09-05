@@ -130,6 +130,20 @@ def index():
     return render_template('index.html', shouts=shouts)
 
 
+# shout
+@app.route('/<name>', methods=['POST'])
+def shout(name):
+    chat = Chat.all().filter('name =', name).get()
+    shout = Shout(chat_name=chat.name, text=request.form['text'])
+    if g.user is not None:
+        shout.user_name = g.user.name
+    else:
+        shout.user_name = 'null'
+    shout.save()
+    pusher[chat.key()].trigger('shout', data=shout.to_dict())
+    return ''
+
+
 # show
 @app.route('/<name>', methods=['GET'])
 def chat(name):
@@ -157,15 +171,3 @@ def chat(name):
     else:
         flash(u'チャット名に使えるのは英数字と　- (ハイフン) _ (アンダースコア) だけです！')
         return redirect(url_for('index'))
-
-
-# shout
-@app.route('/<name>', methods=['POST'])
-def shout(name):
-    chat = Chat.all().filter('name =', name).get()
-    shout = Shout(chat_name=chat.name, text=request.form['text'])
-    if g.user is not None:
-        shout.user_name = g.user.name
-    shout.save()
-    pusher[chat.key()].trigger('shout', data=shout.to_dict())
-    return ''
