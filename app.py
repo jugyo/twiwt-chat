@@ -126,7 +126,7 @@ def oauth_authorized(resp):
 # chat list
 @app.route('/')
 def index():
-    shouts = Shout.all().order('-created_at').fetch(100)
+    shouts = []#Shout.all().order('-created_at').fetch(100)
     return render_template('index.html', shouts=shouts)
 
 

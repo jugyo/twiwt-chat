@@ -1,27 +1,33 @@
 {% extends "layout.html" %}
 {% block body %}
-  <ul id="shouts">
-  </ul>
+  <h2>{{ chat.name }}</h2>
 
-  <form id="shout-form">
-    <textarea id="shout-text"></textarea>
-    <input type="submit" id="shout-button" value="shout!" class="awesome" />
-  </form>
+  <div id="chat">
+    <ul id="shouts">
+    </ul>
 
-  <!-- Template content --> 
-	<textarea id="template" style="display:none"> 
-		{{'{#foreach $T.shouts as shout}'}}
-  	  <li class="shout">
-        <a href="http://twitter.com/{{'{ $T.shout.user_name }'}}" class="user-link">
-          <img src="http://img.tweetimag.es/i/{{'{ $T.shout.user_name }'}}_m" alt="{{'{ $T.shout.user_name }'}}" class="user-image" />
-        </a>
-        :
-        <span class="text">{{'{ $T.shout.text }'}}
-  	  </li>
-		{{'{#/for}'}}
-	</textarea>
+    <form id="shout-form">
+      <textarea id="shout-text"></textarea>
+      <input type="submit" id="shout-button" value="shout!" class="awesome" />
+    </form>
 
-  <div id="result" style="display: none;"></div>
+    <!-- Template content --> 
+  	<textarea id="template" style="display:none"> 
+  		{{'{#foreach $T.shouts as shout}'}}
+    	  <li class="shout">
+          <a href="http://twitter.com/{{'{ $T.shout.user_name }'}}" class="user-image-link">
+            <img src="http://img.tweetimag.es/i/{{'{ $T.shout.user_name }'}}_m" alt="{{'{ $T.shout.user_name }'}}" class="user-image" />
+          </a>
+          <p class="shout-body">
+            <a href="http://twitter.com/{{'{ $T.shout.user_name }'}}" class="user-link">{{'{ $T.shout.user_name }'}}</a>
+            <span class="text">{{'{ $T.shout.text }'}}</span>
+          </p>
+    	  </li>
+  		{{'{#/for}'}}
+  	</textarea>
+
+    <div id="result" style="display: none;"></div>
+  </div>
 
   <script type="text/javascript">
     $(function() {
@@ -33,6 +39,7 @@
         // process the template
         $("#result").processTemplate(data);
         $("#shouts").append($("#result").html());
+        $('html,body').animate({ scrollTop: 100000 });
       }
 
       var server = new Pusher('{{ g.config.key }}', '{{ chat.key() }}');
@@ -51,6 +58,8 @@
           success: function(msg){
             $('#shout-text').val('');
             $('#shout-text').attr('readonly', false);
+            $('#shout-text').focus();
+            $('html,body').animate({ scrollTop: 100000 });
           }
         });
         $('#shout-text').focus();

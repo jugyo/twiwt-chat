@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% block body %}
+  {% if False %}
   <ul>
     {% for shout in shouts %}
       <li>
@@ -18,4 +19,5 @@
       });
     });
   </script>
+  {% endif %}
 {% endblock %}

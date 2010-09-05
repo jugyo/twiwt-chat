@@ -3,31 +3,47 @@
 
 body {
   font-family: 'Lucida Grande', sans-serif;
+  color: #333;
 }
 
-/* -------- #header -------- */
+a:link, a:visited, a:active {
+  color: #00AAE2;
+}
 
-#header {
+a:hover {
+  color: #00BFFF;
+}
+
+/* -------- #side -------- */
+
+#side {
   position: fixed;
   top: 0;
-  left: 0;
-  z-index: 1000;
-  opacity: 0.98;
-  height: 30px;
-  width: 100%;
-  padding: 4px 0;
-  background-color: #64DBFF;
-  color: #FFF;
-  font-size: 20px;
+  right: 0;
+  width: 270px;
+  padding: 16px;
+  color: #999;
+  text-align: right;
+  z-index: 10000;
 }
 
-h1 {
-  margin-left: 12px;
-  display: inline-block;
+#side ul {
+  padding-left: 8px;
 }
 
-h1 a {
-  color: #FFF;
+#side li {
+  margin: 4px 0;
+}
+
+#side h1 {
+  font-size: 160%;
+  margin-bottom: 12px;
+}
+
+#side h2 {
+  color: #666;
+  margin: 12px 0;
+  font-size: 140%;
 }
 
 form#go {
@@ -36,56 +52,47 @@ form#go {
 
 form#go input[type=text] {
   border: solid 1px;
-  border-color: #ADECFF;
+  border-color: #64DBFF;
+  background-color: #B3EDFF;
   font-size: 20px;
-  background-color: #64DBFF;
-  color: #FFF;
-}
-
-form#go input[type=text]:hover {
-  border-color: #FFF;
+  width: 160px;
+  vertical-align: middle;
 }
 
 #user-menu {
-  margin-right: 12px;
+  margin: 12px 0;
   font-size: 80%;
-  float: right;
-}
-
-#user-menu a {
-  color: #FFF;
 }
 
 #user-menu img {
   vertical-align: middle;
-}
-
-/* -------- #side -------- */
-
-#side {
-  position: fixed;
-  top: 58px;
-  right: 0;
-  width: 216px;
-  background-color: #EEE;
-  padding: 12px 12px 16px 12px;
-  border-radius: 2px 0 0 12px;
-}
-
-#side ul {
-}
-
-#side h2 {
-  color: #666;
-  margin-bottom: 6px;
+  margin: 0 2px;
 }
 
 /* -------- #content -------- */
 
 #content {
+  position: relative;
+}
+
+#content h2 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 4px 8px;
+  font-size: 300%;
+  background-color: #FFF;
+  color: #CCC;
+  z-index: 1000;
+  opacity: 0.9;
+}
+
+/* -------- #chat -------- */
+
+#chat {
   padding: 0 12px;
-  margin-top: 50px;
-  margin-right: 240px;
+  margin-top: 60px;
+  margin-right: 300px;
   position: relative;
 }
 
@@ -96,18 +103,37 @@ textarea#shout-text {
   height: 40px;
   margin: 8px 0;
   border: solid 1px;
-  border-color: #CCC;
-  vertical-align: middle;
-  border-radius: 2px;
-}
-
-textarea#shout-text:hover, textarea#shout-text:focus {
   border-color: #666;
+  vertical-align: middle;
 }
 
 input[type=submit]#shout-button {
   padding: 0;
   margin: 0;
+}
+
+/* -------- shout -------- */
+
+li.shout {
+  position: relative;
+  min-height: 2em;
+  border-bottom: dashed 1px #DDD;
+  padding: 4px 0;
+}
+
+li.shout .user-image-link {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+}
+
+li.shout .shout-body {
+  margin-left: 34px;
+  line-height: 1.5em;
+}
+
+li.shout .user-link {
+  font-weight: bold;
 }
 
 /* -------- #footer -------- */
@@ -120,11 +146,20 @@ input[type=submit]#shout-button {
   color: #FFF;
   font-size: 86%;
   padding: 4px 12px;
-  border-radius: 12px 0 0 0;
 }
 
 #footer a {
   color: #FFF;
+}
+
+/* -------- effect -------- */
+
+#shout-form, #side, #footer {
+  opacity: 0.6;
+}
+
+#shout-form:hover, #side:hover, #footer:hover {
+  opacity: 0.98;
 }
 
 /* -------- xxxxx -------- */

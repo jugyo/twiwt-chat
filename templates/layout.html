@@ -22,38 +22,35 @@
   </head>
   <body>
 
-    <div id="header">
+    <div id="side">
       <h1><a href="/">PusherChat</a></h1>
-      /
-      <form id="go">
-        <input type="text" name="name" value="{{ chat.name if chat }}"/>
-      </form>
-      <script type="text/javascript">
-        $('#go').submit(function() {
-          window.location.href = '/' + $('input[name=name]', this).val();
-        });
-      </script>
+
       <div id="user-menu">
         {% if g.user %}
           {{ user_image_link(g.user.name, 'm') }}
           {{ user_link(g.user.name) }}
+          |
+          <a href="/">Home</a>
           |
           <a href="{{ url_for('logout') }}">Sign out</a>
         {% else %}
           <a href="{{ url_for('login') }}" title="Sign in with Twitter" class="tooltip">Sign in</a>
         {% endif %}
       </div>
-    </div>
 
-    <div id="side">
-      <ul>
-        {% if g.user %}
-          <h2>History</h2>
+      <form id="go">
+        <input type="text" name="name" value="{{ chat.name if chat }}"/>
+        <input type="submit" value="go!" class="awesome" />
+      </form>
+
+      {% if g.user %}
+        <h2>History</h2>
+        <ul>
           {% for chat in g.user.recent_chats[:20] %}
             <li><a href="{{ url_for('chat', name=chat) }}">{{ chat }}</a></li>
           {% endfor %}
-        {% endif %}
-      </ul>
+        </ul>
+      {% endif %}
     </div>
 
     <div id="content">
