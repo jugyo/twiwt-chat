@@ -50,14 +50,12 @@
       $('#shout-form').submit(function() {
         // もうちょっと気の利いたエフェクトを入れる
         var text = $('#shout-text').val();
-        $('#shout-text').attr('readonly', true);
+        $('#shout-text').val('');
         $.ajax({
           type: "POST",
           url: "{{ url_for('chat', name=chat.name) }}",
           data: "text=" + text,
           success: function(msg){
-            $('#shout-text').val('');
-            $('#shout-text').attr('readonly', false);
             $('#shout-text').focus();
             $('html,body').animate({ scrollTop: 100000 });
           }
