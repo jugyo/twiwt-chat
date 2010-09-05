@@ -65,8 +65,8 @@ form#go input[type=text]:hover {
 #side {
   position: fixed;
   top: 58px;
-  left: 0;
-  width: 200px;
+  right: 0;
+  width: 240px;
   background-color: #EEE;
 }
 
@@ -82,9 +82,9 @@ form#go input[type=text]:hover {
 /* -------- #content -------- */
 
 #content {
-  padding: 4px 12px;
-  margin-top: 40px;
-  margin-left: 200px;
+  padding: 0 12px;
+  margin-top: 50px;
+  margin-right: 240px;
   position: relative;
 }
 
