@@ -1,5 +1,11 @@
+session_secret_key = 'foo'
+token_term = 7
+
+# Pusher
 app_id = 'XXX'
 key = 'XXXXXXXXXXXXXXXXXXXX'
 secret = 'XXXXXXXXXXXXXXXXXXXX'
 
-session_secret_key = 'foo'
+# Twitter
+consumer_key = 'XXXXXXXXXXXXXXXXXXXX'
+consumer_secret = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
