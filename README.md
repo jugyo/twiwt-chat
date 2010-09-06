@@ -1,33 +1,16 @@
-flask-gae-template
+Twiwt:Chat
 ======
 
-Setup
+[http://chat.twiwt.org/](http://chat.twiwt.org/)
+
+Note on Patches/Pull Requests
+----
+
+* Fork the project.
+* Make your feature addition or bug fix.
+* Send me a pull request. Bonus points for topic branches.
+
+Issues
 ------
 
-    git clone http://github.com/jugyo/flask-gae-template.git
-    cd flask-gae-template
-    ./setup.sh
-
-Run
-------
-
-    dev_appserver.py .
-
-and open 'http://localhost:8080/hello'.
-
-Deploy
-------
-
-You should fix application name of app.yaml before deploy.
-
-    appcfg.py update .
-
-TODO
-------
-
-* sample for test
-
-See Also
-------
-
-[http://flask.pocoo.org/](http://flask.pocoo.org/)
+[http://chat.twiwt.org/issues](http://chat.twiwt.org/issues)
