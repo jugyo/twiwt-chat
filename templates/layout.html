@@ -34,12 +34,15 @@
           |
           <a href="{{ url_for('logout') }}">Sign out</a>
         {% else %}
+          {{ user_image_link('null', 'm') }}
+          {{ user_link('null') }}
+          |
           <a href="{{ url_for('login') }}" title="Sign in with Twitter" class="tooltip">Sign in</a>
         {% endif %}
       </div>
 
       <form id="go">
-        <input type="text" name="name" value="{{ chat.name if chat }}"/>
+        <input type="text" name="name" />
         <input type="submit" value="go!" class="awesome" />
       </form>
 
@@ -59,13 +62,18 @@
     </div>
 
     <div id="footer">
-      <a href="/news">news</a>
-      |
-      <a href="/help">help</a>
-      |
-      <a href="/issues">issues</a>
-      |
-      Powered <a href="http://www.pusherapp.com/">Pusher</a>
+      <p>
+        <a href="/news">news</a>
+        |
+        <a href="/help">help</a>
+        |
+        <a href="/feedback">feedback</a>
+        |
+        <a href="http://github.com/jugyo/twiwt-chat" target="_blank">fork me!</a>
+      </p>
+      <p id="powered-by">
+        Powered <a href="http://www.pusherapp.com/">Pusher</a>
+      </p>
     </div>
   </body>
 </html>

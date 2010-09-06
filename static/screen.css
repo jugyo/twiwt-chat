@@ -22,6 +22,7 @@ a:hover {
   right: 0;
   width: 270px;
   padding: 16px;
+  background-color: #B3EDFF;
   color: #999;
   text-align: right;
   z-index: 10000;
@@ -37,7 +38,7 @@ a:hover {
 
 #side h1 {
   font-size: 160%;
-  margin-bottom: 12px;
+  margin-bottom: 24px;
 }
 
 #side h2 {
@@ -52,8 +53,9 @@ form#go {
 
 form#go input[type=text] {
   border: solid 1px;
+  color: #666;
   border-color: #64DBFF;
-  background-color: #B3EDFF;
+  background-color: #DBF7FF;
   font-size: 20px;
   width: 160px;
   vertical-align: middle;
@@ -79,12 +81,12 @@ form#go input[type=text] {
   position: fixed;
   top: 0;
   left: 0;
+  width: 100%;
   padding: 4px 8px;
   font-size: 300%;
-  background-color: #FFF;
-  color: #CCC;
+  background-color: #CCC;
+  color: #FFF;
   z-index: 1000;
-  opacity: 0.9;
 }
 
 /* -------- #chat -------- */
@@ -99,8 +101,9 @@ form#go input[type=text] {
 /* -------- chat -------- */
 
 textarea#shout-text {
+  font-size: 120%;
   width: 80%;
-  height: 40px;
+  height: 60px;
   margin: 8px 0;
   border: solid 1px;
   border-color: #666;
@@ -142,23 +145,38 @@ li.shout .user-link {
   position: fixed;
   right: 0;
   bottom: 0;
+  width: 282px;
+  z-index: 10000;
   background-color: #AAA;
   color: #FFF;
   font-size: 86%;
-  padding: 6px 12px;
+  padding: 0 10px;
+  text-align: right;
+}
+
+#footer p {
+  margin: 8px 0;
 }
 
 #footer a {
   color: #FFF;
 }
 
+#footer #powered-by, #footer #powered-by a {
+  color: #666;
+}
+
 /* -------- effect -------- */
 
-#shout-form, #side, #footer {
+#content h2 {
+  opacity: 0.8;
+}
+
+#side, #footer {
   opacity: 0.6;
 }
 
-#shout-form:hover, #side:hover, #footer:hover {
+#side:hover, #footer:hover, #content h2:hover {
   opacity: 0.98;
 }
 
