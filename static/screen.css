@@ -7,11 +7,11 @@ body {
 }
 
 a:link, a:visited, a:active {
-  color: #00AAE2;
+  color: #0EA2CF;
 }
 
 a:hover {
-  color: #00BFFF;
+  color: #1BB1DF;
 }
 
 /* -------- #side -------- */
@@ -21,11 +21,12 @@ a:hover {
   top: 0;
   right: 0;
   width: 270px;
-  padding: 16px;
-  background-color: #B3EDFF;
-  color: #999;
+  padding: 4px 8px;
+  background-color: #9CE8FF;
+  color: #FFF;
   text-align: right;
-  z-index: 10000;
+  z-index: 1000;
+  font-size: 86%;
 }
 
 #side ul {
@@ -37,13 +38,13 @@ a:hover {
 }
 
 #side h1 {
-  font-size: 160%;
-  margin-bottom: 24px;
+  font-size: 180%;
+  margin: 12px 0;
 }
 
 #side h2 {
   color: #666;
-  margin: 12px 0;
+  margin: 20px 0 12px 0;
   font-size: 140%;
 }
 
@@ -61,14 +62,44 @@ form#go input[type=text] {
   vertical-align: middle;
 }
 
+/* -------- #user-menu -------- */
+
 #user-menu {
   margin: 12px 0;
-  font-size: 80%;
 }
 
 #user-menu img {
   vertical-align: middle;
   margin: 0 2px;
+}
+
+/* -------- #footer -------- */
+
+#footer {
+/*  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 282px;
+  z-index: 10000;
+  background-color: #AAA;
+  color: #FFF;
+  font-size: 86%;
+  padding: 0 10px;
+*/
+  margin-top: 30px;
+  text-align: right;
+}
+
+#footer p {
+  margin: 8px 0;
+}
+
+#footer a {
+/*  color: #FFF;*/
+}
+
+#footer #powered-by, #footer #powered-by a {
+/*  color: #666;*/
 }
 
 /* -------- #content -------- */
@@ -79,32 +110,37 @@ form#go input[type=text] {
 
 #content h2 {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 4px 8px;
+  top: 24px;
+  right: 270px;
+  padding: 12px 24px 12px 12px;
   font-size: 300%;
   background-color: #CCC;
   color: #FFF;
-  z-index: 1000;
+  z-index: 2000;
 }
 
 /* -------- #chat -------- */
 
 #chat {
   padding: 0 12px;
-  margin-top: 60px;
   margin-right: 300px;
+  margin-bottom: 90px;
   position: relative;
 }
 
-/* -------- chat -------- */
+#shout-form {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  margin: 12px 8px;
+  opacity: 0.8;
+}
 
 textarea#shout-text {
-  font-size: 120%;
-  width: 80%;
+  font-size: 110%;
+  width: 50%;
   height: 60px;
-  margin: 8px 0;
   border: solid 1px;
   border-color: #666;
   vertical-align: middle;
@@ -139,45 +175,22 @@ li.shout .user-link {
   font-weight: bold;
 }
 
-/* -------- #footer -------- */
-
-#footer {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  width: 282px;
-  z-index: 10000;
-  background-color: #AAA;
-  color: #FFF;
-  font-size: 86%;
-  padding: 0 10px;
-  text-align: right;
-}
-
-#footer p {
-  margin: 8px 0;
-}
-
-#footer a {
-  color: #FFF;
-}
-
-#footer #powered-by, #footer #powered-by a {
-  color: #666;
-}
-
 /* -------- effect -------- */
 
 #content h2 {
   opacity: 0.8;
+/*  -webkit-transition-property: opacity;
+  -webkit-transition-duration: 0.5s;*/
 }
 
-#side, #footer {
-  opacity: 0.6;
+#side {
+  opacity: 0.8;
+/*  -webkit-transition-property: opacity;
+  -webkit-transition-duration: 0.5s;*/
 }
 
-#side:hover, #footer:hover, #content h2:hover {
-  opacity: 0.98;
-}
+/*#side:hover, #footer:hover, #content h2:hover {
+  opacity: 0.9;
+}*/
 
 /* -------- xxxxx -------- */
