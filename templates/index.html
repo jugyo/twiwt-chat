@@ -1,29 +1,27 @@
 {% extends "layout.html" %}
 {% block body %}
-  <div id="chat">
-    <div id="go-to-chat">
-      <form class="go">
-        {{ g.config.host }}<input type="text" name="name" />
-        <input type="submit" value="go!" class="awesome" />
-      </form>
-    </div>
-
-    <h3>Recent</h3>
-    <ul id="shouts">
-      {% for shout in shouts %}
-    	  <li class="shout">
-          <p>
-            <a href="{{ url_for('chat', name=shout.chat_name) }}" class="chat-name">{{ shout.chat_name }}</a>
-            <a href="http://twitter.com/{{ shout.user_name }}">
-              <img src="http://img.tweetimag.es/i/{{ shout.user_name }}_m" alt="{{ shout.user_name }}" class="user-image" />
-            </a>
-            <a href="http://twitter.com/{{ shout.user_name }}" class="user-link">{{ shout.user_name }}</a>
-            {{ shout.text }}
-          </p>
-        </li>
-      {% endfor %}
-    </ul>
+  <div id="go-to-chat">
+    <form class="go">
+      {{ g.config.host }}<input type="text" name="name" />
+      <input type="submit" value="go!" class="awesome" />
+    </form>
   </div>
+
+  <h3>Recent</h3>
+  <ul id="shouts">
+    {% for shout in shouts %}
+  	  <li class="shout">
+        <p>
+          <a href="{{ url_for('chat', name=shout.chat_name) }}" class="chat-name">{{ shout.chat_name }}</a>
+          <a href="http://twitter.com/{{ shout.user_name }}">
+            <img src="http://img.tweetimag.es/i/{{ shout.user_name }}_m" alt="{{ shout.user_name }}" class="user-image" />
+          </a>
+          <a href="http://twitter.com/{{ shout.user_name }}" class="user-link">{{ shout.user_name }}</a>
+          {{ shout.text }}
+        </p>
+      </li>
+    {% endfor %}
+  </ul>
 
   {% if False %}
   <ul>

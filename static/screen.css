@@ -101,7 +101,8 @@ form.go input[type=text] {
 /* -------- #content -------- */
 
 #content {
-  position: relative;
+  padding: 12px;
+  margin-right: 286px;
 }
 
 #content h2 {
@@ -115,21 +116,18 @@ form.go input[type=text] {
   z-index: 2000;
 }
 
-/* -------- #chat -------- */
-
-#chat {
-  padding: 12px;
-  margin-right: 286px;
-  margin-bottom: 90px;
-  position: relative;
-}
-
-#chat h3 {
+#content h3 {
   margin: 8px 0;
   font-size: 200%;
   color: #DDD;
   text-align: right;
   border-bottom: solid 4px #EEE;
+}
+
+/* -------- #chat -------- */
+
+#chat {
+  margin-bottom: 90px;
 }
 
 /* -------- #chat #shout-form -------- */
