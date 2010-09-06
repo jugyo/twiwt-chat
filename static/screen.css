@@ -126,8 +126,8 @@ form.go input[type=text] {
 
 #chat h3 {
   margin: 8px 0;
-  font-size: 160%;
-  color: #666;
+  font-size: 200%;
+  color: #DDD;
   text-align: right;
   border-bottom: solid 4px #EEE;
 }
