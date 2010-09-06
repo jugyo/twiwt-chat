@@ -9,3 +9,5 @@ secret = 'XXXXXXXXXXXXXXXXXXXX'
 # Twitter
 consumer_key = 'XXXXXXXXXXXXXXXXXXXX'
 consumer_secret = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+
+host = 'http://chat.twiwt.org/'

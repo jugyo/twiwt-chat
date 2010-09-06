@@ -48,11 +48,7 @@ a:hover {
   font-size: 140%;
 }
 
-form#go {
-  display: inline-block;
-}
-
-form#go input[type=text] {
+form.go input[type=text] {
   border: solid 1px;
   color: #666;
   border-color: #64DBFF;
@@ -122,11 +118,21 @@ form#go input[type=text] {
 /* -------- #chat -------- */
 
 #chat {
-  padding: 0 12px;
-  margin-right: 300px;
+  padding: 12px;
+  margin-right: 286px;
   margin-bottom: 90px;
   position: relative;
 }
+
+#chat h3 {
+  margin: 8px 0;
+  font-size: 160%;
+  color: #666;
+  text-align: right;
+  border-bottom: solid 4px #EEE;
+}
+
+/* -------- #chat #shout-form -------- */
 
 #shout-form {
   position: fixed;
@@ -173,6 +179,31 @@ li.shout .shout-body {
 
 li.shout .user-link {
   font-weight: bold;
+}
+
+li.shout .chat-name {
+  color: #AAA;
+  font-weight: bold;
+}
+
+li.shout .user-image {
+  vertical-align: middle;
+}
+
+/* -------- #go-to-chat -------- */
+
+#go-to-chat {
+  margin-bottom: 40px;
+  padding: 30px 0;
+  text-align: center;
+  color: #999;
+  border: solid 8px #EEE;
+  font-size: 24px;
+}
+
+#go-to-chat form.go input[type=text] {
+  font-size: 24px;
+  width: 240px;
 }
 
 /* -------- effect -------- */
