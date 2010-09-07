@@ -196,14 +196,17 @@ li.shout .user-image {
   margin: 80px auto 0 auto;
 }
 
+#main-image {
+  margin: 10px 0;
+}
+
 /* -------- #go-to-chat -------- */
 
 #go-to-chat {
-  margin-bottom: 40px;
-  padding: 80px 0;
+  padding: 10px 0;
   color: #999;
   text-align: center;
-  font-size: 22px;
+  font-size: 32px;
 }
 
 #go-to-chat form {
@@ -212,7 +215,7 @@ li.shout .user-image {
 }
 
 #go-to-chat form.go input[type=text] {
-  font-size: 22px;
+  font-size: 32px;
   width: 200px;
   background-color: transparent;
 }
