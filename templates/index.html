@@ -3,7 +3,12 @@
   <div id="go-to-chat">
     <form class="go">
       {{ g.config.host }}<input type="text" name="name" placeholder="chat name" />
-      <input type="submit" value="go!" class="awesome"/>
+      <input type="submit" value="go!" class="awesome" />
+    </form>
+    or
+    <form class="go">
+      <input type="hidden" name="name" value=".random" />
+      <input type="submit" value="random!" class="awesome" />
     </form>
   </div>
 

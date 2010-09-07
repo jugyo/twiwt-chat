@@ -23,6 +23,7 @@ import re
 from time import time
 import datetime
 from hashlib import sha1
+import utils
 
 app = Flask(__name__)
 app.secret_key = config.session_secret_key
@@ -143,11 +144,20 @@ def shout(name):
     pusher[chat.key()].trigger('shout', data=shout.to_dict())
     return ''
 
+def gen_chat_name(command):
+    if command == '.random':
+        return utils.randstr(10)
+    else:
+        return command[1:-1]
 
 # show
 @app.route('/<name>', methods=['GET'])
 def chat(name):
-    if re.match('^[a-zA-Z0-9\-_]+$', name) is not None:
+    if re.match('^\.', name):
+        return redirect(url_for('chat', name=gen_chat_name(name)))
+
+    if re.match('^[\.a-zA-Z0-9\-_]+$', name) is not None:
+
         chat = Chat.all().filter('name =', name).get()
 
         if chat is None:
