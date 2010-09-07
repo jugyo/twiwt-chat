@@ -105,7 +105,7 @@ form.go input[type=text] {
   padding: 12px;
 }
 
-#content h2 {
+#content h2.chat-name {
   position: fixed;
   top: 24px;
   right: 270px;
