@@ -1,9 +1,9 @@
 {% macro user_image_link(name, size='n') -%}
-    <a href="http://twitter.com/{{ name }}">
-      <img src="http://img.tweetimag.es/i/{{ name }}_{{ size }}" alt="{{ name }}" class="user-image" />
-    </a>
+  <a href="http://twitter.com/{{ name }}">
+    <img src="http://img.tweetimag.es/i/{{ name }}_{{ size }}" alt="{{ name }}" class="user-image" />
+  </a>
 {%- endmacro %}
 
 {% macro user_link(name) -%}
-    <a href="http://twitter.com/{{ name }}">{{ name }}</a>
+  <a href="http://twitter.com/{{ name }}">{{ name }}</a>
 {%- endmacro %}

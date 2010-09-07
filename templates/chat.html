@@ -1,59 +1,19 @@
+{% from "helpers.html" import user_menu %}
 {% extends "layout.html" %}
+
+{% block side %}
+  {% if g.user %}
+    <h2>History</h2>
+    <ul>
+      {% for chat in g.user.recent_chats[:20] %}
+        <li><a href="{{ url_for('chat', name=chat) }}">{{ chat }}</a></li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endblock %}
+
 {% block body %}
-  <div id="side">
-    <h1><a href="/">Twiwt:Chat</a></h1>
-
-    <div id="user-menu">
-      {% if g.user %}
-        {{ user_image_link(g.user.name, 'm') }}
-        {{ user_link(g.user.name) }}
-        |
-        <a href="/">Home</a>
-        |
-        <a href="{{ url_for('logout') }}">Sign out</a>
-      {% else %}
-        {{ user_image_link('null', 'm') }}
-        {{ user_link('null') }}
-        |
-        <a href="{{ url_for('login') }}" title="Sign in with Twitter" class="tooltip">Sign in</a>
-      {% endif %}
-    </div>
-
-    <form class="go">
-      <input type="text" name="name" placeholder="chat name" />
-      <input type="submit" value="go!" class="awesome" />
-    </form>
-    <form class="go">
-      or <input type="hidden" name="name" value=".random" />
-      <input type="submit" value="random!" class="awesome" />
-    </form>
-
-    {% if g.user %}
-      <h2>History</h2>
-      <ul>
-        {% for chat in g.user.recent_chats[:20] %}
-          <li><a href="{{ url_for('chat', name=chat) }}">{{ chat }}</a></li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-
-    <div id="footer">
-      <p>
-        <a href="/news">news</a>
-        |
-        <a href="/help">help</a>
-        |
-        <a href="/feedback">feedback</a>
-        |
-        <a href="http://github.com/jugyo/twiwt-chat" target="_blank">fork me!</a>
-      </p>
-      <p id="powered-by">
-        Powered <a href="http://www.pusherapp.com/">Pusher</a>
-      </p>
-    </div>
-  </div>
-
-  <h2>{{ chat.name }}</h2>
+  <h2 class="chat-name">{{ chat.name }}</h2>
 
   <div id="chat">
     <ul id="shouts">
