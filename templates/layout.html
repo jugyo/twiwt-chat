@@ -40,7 +40,14 @@
         {% endif %}
       </div>
 
-      {% block side %}{% endblock %}
+      {% if g.user %}
+        <h2>History</h2>
+        <ul>
+          {% for chat in g.user.recent_chats[:20] %}
+            <li><a href="{{ url_for('chat', name=chat) }}">{{ chat }}</a></li>
+          {% endfor %}
+        </ul>
+      {% endif %}
 
       <div id="footer">
         <p>
