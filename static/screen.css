@@ -103,7 +103,12 @@ form.go input[type=text] {
 
 #content {
   padding: 12px;
-  margin-right: 286px;
+}
+
+#content h1 {
+  font-size: 200%;
+  text-align: right;
+  margin: 10px 0 20px 0;
 }
 
 #content h2 {
@@ -128,6 +133,7 @@ form.go input[type=text] {
 /* -------- #chat -------- */
 
 #chat {
+  margin-right: 286px;
   margin-bottom: 90px;
 }
 
