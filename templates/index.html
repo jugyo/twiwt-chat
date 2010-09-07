@@ -1,34 +1,39 @@
 {% extends "layout.html" %}
 {% block body %}
-  <h1><a href="/">Twiwt:Chat</a></h1>
-
-  <div id="go-to-chat">
-    <form class="go">
-      {{ g.config.host }}<input type="text" name="name" placeholder="chat name" />
-      <input type="submit" value="go!" class="awesome" />
-    </form>
-    or
-    <form class="go">
-      <input type="hidden" name="name" value=".random" />
-      <input type="submit" value="random!" class="awesome" />
-    </form>
+  <div id="side">
+    <h1><a href="/">Twiwt:Chat</a></h1>
   </div>
 
-  <h3>Recent</h3>
-  <ul id="shouts">
-    {% for shout in shouts %}
-  	  <li class="shout">
-        <p>
-          <a href="{{ url_for('chat', name=shout.chat_name) }}" class="chat-name">{{ shout.chat_name }}</a>
-          <a href="http://twitter.com/{{ shout.user_name }}">
-            <img src="http://img.tweetimag.es/i/{{ shout.user_name }}_m" alt="{{ shout.user_name }}" class="user-image" />
-          </a>
-          <a href="http://twitter.com/{{ shout.user_name }}" class="user-link">{{ shout.user_name }}</a>
-          {{ shout.text }}
-        </p>
-      </li>
-    {% endfor %}
-  </ul>
+  <div id="top-page">
+    <div id="go-to-chat">
+      <form class="go">
+        <input type="text" name="name" placeholder="chat name" />
+        <input type="submit" value="go!" class="awesome" />
+      </form>
+      or
+      <form class="go">
+        <input type="hidden" name="name" value=".random" />
+        <input type="submit" value="random!" class="awesome" />
+      </form>
+    </div>
+
+    <h3>Recent</h3>
+    <ul id="shouts">
+      {% for shout in shouts %}
+        <li class="shout">
+          <p>
+            <a href="{{ url_for('chat', name=shout.chat_name) }}" class="chat-name">{{ shout.chat_name }}</a>
+            <a href="http://twitter.com/{{ shout.user_name }}">
+              <img src="http://img.tweetimag.es/i/{{ shout.user_name }}_m" alt="{{ shout.user_name }}" class="user-image" />
+            </a>
+            <a href="http://twitter.com/{{ shout.user_name }}" class="user-link">{{ shout.user_name }}</a>
+            {{ shout.text }}
+          </p>
+        </li>
+      {% endfor %}
+    </ul>
+
+  </div>
 
   {% if False %}
   <ul>

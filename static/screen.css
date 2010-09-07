@@ -105,12 +105,6 @@ form.go input[type=text] {
   padding: 12px;
 }
 
-#content h1 {
-  font-size: 200%;
-  text-align: right;
-  margin: 10px 0 20px 0;
-}
-
 #content h2 {
   position: fixed;
   top: 24px;
@@ -195,6 +189,13 @@ li.shout .user-image {
   vertical-align: middle;
 }
 
+/* -------- #top-page -------- */
+
+#top-page {
+  width: 900px;
+  margin: 80px auto 0 auto;
+}
+
 /* -------- #go-to-chat -------- */
 
 #go-to-chat {
@@ -202,7 +203,6 @@ li.shout .user-image {
   padding: 80px 0;
   color: #999;
   text-align: center;
-  border: solid 1px #CCC;
   font-size: 22px;
 }
 
